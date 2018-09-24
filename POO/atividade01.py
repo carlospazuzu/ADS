@@ -23,6 +23,3 @@ class Point:
         self.x += x
         self.y += y
 
-    def move(self, point):
-        self.x = point.x
-        self.y = point.y
