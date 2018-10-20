@@ -5,6 +5,12 @@ class Disco:
     def __init__(self):
         self.arquivos = []
 
+    def get_arquivos(self):
+        return self.arquivos
+
+    def __len__(self):
+        return len(self.arquivos)
+
     def get_arquivo(self, nome):
         for arquivo in self.arquivos:
             # TODO modificar o metodo para aceitar arquivos e diretorios

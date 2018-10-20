@@ -15,17 +15,17 @@ class Editor:
             self.arquivo_atual.mostrar_conteudo()
             print()
 
-            self.tcor.print_colorido('Comandos: modificar #, apagar #, escrever #, sair', 'cinza')
+            self.tcor.print_colorido('Comandos: mod #, er #, wrt #, exit - # = numero da linha', 'cinza')
             print('> ', end='')
             
             ipt = input()
 
             # sai do editor e atualiza a data de modificação
-            if ipt == 'sair':
+            if ipt == 'exit':
                 self.arquivo_atual.atualizar_data_mod()
                 break
-            # apagar uma linha
-            elif len(ipt) == 8 and ipt[:6] == 'apagar':
+            # er uma linha
+            elif len(ipt) == 4 and ipt[:2] == 'er':
                 try:
                     num = int(ipt[-1])
                 except:
@@ -34,7 +34,7 @@ class Editor:
                 
                 self.arquivo_atual.escrever_linha(num, '')
             # escrever uma nova linha
-            elif len(ipt) == 10 and ipt[:8] == 'escrever':
+            elif len(ipt) == 5 and ipt[:3] == 'wrt':
                 try:
                     num = int(ipt[-1])
                 except:
@@ -44,7 +44,7 @@ class Editor:
                 new = input()
                 self.arquivo_atual.escrever_linha(num, new)
             # modifica uma linha existente
-            elif len(ipt) == 11 and ipt[:9] == 'modificar':
+            elif len(ipt) == 5 and ipt[:3] == 'mod':
                 try:
                     num = int(ipt[-1])
                 except:
