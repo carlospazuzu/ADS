@@ -39,6 +39,26 @@ class Sistema:
             if self.comando:
                 if self.cmd == 'ls':
                     self.disco.listar()
+                elif self.cmd == 'help':
+                    print('-' * 20)
+                    print('Comandos válidos:')
+                    print('-' * 20)
+                    print('ls\t\t lista arquivos do diretorio raiz')
+                    print('edit <arquivo>\t\t abre o editor de texto')
+                    print('touch <arquivo>\t\t criar um novo arquivo de texto')
+                    print('rm <arquivo> \t\t deleta arquivo')
+                    print('exit\t\t fechar o programa')
+                    print('-' * 20)
+                    print('Comandos de git:')
+                    print('-' * 20)
+                    print('git add <arquivo>\t\t adiciona arquivo à staging zone')
+                    print('git rm <arquivo> \t\t remove arquivo da staging zone')
+                    print('git commit\t\t comita arquivos da SZ ao repositorio')
+                    print('git status\t\t mostra o status da staging zone')
+                    print('git log\t\t mostra todos os commits realizados')
+                    print()
+                    input("Digite algo para continuar...")
+
                 elif self.cmd == 'status':     
                     # mostrar apenas se tiver pelo menos 1 arquivo nao rastreado               
                     if len(self.untracked) > 0:
@@ -77,6 +97,11 @@ class Sistema:
                 self.repo.encerrar()
                 limpar_tela()
                 break
+            
+            # help
+            elif ipt == 'help':
+                self.comando = True
+                self.cmd = 'help'
 
             # criar arquivo vazio
             elif len(ipt) >= 5 and ipt[:5] == 'touch':
