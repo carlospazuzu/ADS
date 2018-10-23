@@ -195,7 +195,7 @@ class Sistema:
                 self.repo.mostrar_commits()
 
             # git reset
-            elif len(ipt) == 9 and ipt = 'git reset':
+            elif len(ipt) == 9 and ipt == 'git reset':
                 self.staging.esvaziar()
                 print('A staging area foi esvaziada.')
                 input()
