@@ -1,9 +1,0 @@
-
-Todo:
-
-  sistema.py:
-    ☐ Implementar "git reset" - retirar todos os arquivos da staging area
-    ☐ Implementar suporte a salvar arquivos do working dir no banco de dados
-    
-  repositorio.py:
-    ☐ mostrar detalhes quando o usuario dar um _git show <hash>_

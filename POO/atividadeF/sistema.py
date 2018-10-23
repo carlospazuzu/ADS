@@ -55,6 +55,7 @@ class Sistema:
                     print('git rm <arquivo> \t\t remove arquivo da staging zone')
                     print('git commit\t\t comita arquivos da SZ ao repositorio')
                     print('git status\t\t mostra o status da staging zone')
+                    print("git reset\t\t esvazia a staging area")
                     print('git log\t\t mostra todos os commits realizados')
                     print()
                     input("Digite algo para continuar...")
@@ -121,8 +122,7 @@ class Sistema:
                     edt = Editor(arq)
                     edt.run()                 
                     # se estiver na staging area, retirar
-                    self.staging.rm(arq)                    
-                        
+                    # self.staging.rm(arq)                                            
                 else:
                     print('Arquivo não encontrado!')
                     input()
@@ -193,5 +193,11 @@ class Sistema:
             # git log
             elif len(ipt) == 7 and ipt == 'git log':                
                 self.repo.mostrar_commits()
+
+            # git reset
+            elif len(ipt) == 9 and ipt = 'git reset':
+                self.staging.esvaziar()
+                print('A staging area foi esvaziada.')
+                input()
             else:
                 self.warning = True
