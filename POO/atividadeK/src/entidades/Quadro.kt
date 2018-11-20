@@ -5,9 +5,9 @@ class Quadro(nome: String)
     var titulo: String = nome
     val listaListagem: ArrayList<Listagem> = ArrayList<Listagem>()
 
-    fun criarNovaListagem(nomeLista: String)
+    fun criarNovaListagem(nomeLista: String, pai: String)
     {
-        val novaListagem: Listagem = Listagem(nomeLista)
+        val novaListagem: Listagem = Listagem(nomeLista, pai)
 
         listaListagem.add(novaListagem)
     }

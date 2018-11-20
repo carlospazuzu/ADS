@@ -1,6 +1,7 @@
 package aplicacao
 
 import entidades.Dados
+import utils.Helper
 import java.util.*
 
 class QuadroController
@@ -21,7 +22,7 @@ class QuadroController
             println("0. Sair")
 
             print("\nSelecione a opcao desejada: ")
-            var opcao = dados.reader.nextInt()
+            var opcao = Helper.reader.nextInt()
 
             when(opcao)
             {
@@ -32,7 +33,7 @@ class QuadroController
                     print("Digite o nome da nova lista: ")
                     val nome = readLine()!!
 
-                    dados.listaQuadro[numeroQuadro].criarNovaListagem(nome)
+                    dados.listaQuadro[numeroQuadro].criarNovaListagem(nome, dados.listaQuadro[numeroQuadro].titulo)
                 }
                 // OPCAO ACESSAR LISTAGEM
                 2 ->
@@ -50,7 +51,7 @@ class QuadroController
 
                         print("\nDigite a lista que deseja acessar: ")
 
-                        var opcaoLista = dados.reader.nextInt()
+                        var opcaoLista = Helper.reader.nextInt()
 
                         // TODO: fazer o mesmo esquema pra lista
                         listaController.run(dados.listaQuadro[numeroQuadro].listaListagem[opcaoLista])

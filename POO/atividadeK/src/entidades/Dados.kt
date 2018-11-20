@@ -5,7 +5,7 @@ import java.util.Scanner
 class Dados private constructor()
 {
     val listaQuadro: ArrayList<Quadro> = ArrayList<Quadro>()
-    val reader = Scanner(System.`in`)
+    val listaEtiqueta: ArrayList<Etiqueta> = ArrayList<Etiqueta>()
 
     companion object {
         private val instance: Dados = Dados()

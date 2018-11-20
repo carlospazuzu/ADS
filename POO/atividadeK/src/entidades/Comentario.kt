@@ -1,5 +1,6 @@
 package entidades
 
+import utils.Helper
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -9,11 +10,6 @@ class Comentario
 
     constructor(comentario: String)
     {
-        val atual = LocalDateTime.now()
-
-        val formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
-        val formatado = atual.format(formato)
-
-        this.comentario = formatado + " - " + comentario
+        this.comentario = Helper.getTimeStampAtual() + " - " + comentario
     }
 }

@@ -1,7 +1,9 @@
 package aplicacao
 
 import entidades.Dados
+import entidades.Etiqueta
 import entidades.Quadro
+import utils.Helper
 
 class App()
 {
@@ -18,14 +20,16 @@ class App()
             println("\n===== TRELLO =====\n")
             println("1. Criar Novo Quadro")
             println("2. Acessar Quadro")
+            println("3. Criar Nova Etiqueta")
             println("0. Sair")
 
             print("\nDigite uma opcao: ")
-            var escolha = dados.reader.nextInt()
+            val escolha = Helper.reader.nextInt()
 
             when(escolha)
             {
                 0 -> running = false
+                // OPCAO CRIAR NOVO QUADRO
                 1 ->
                 {
                     print("\nDigite o nome do novo Quadro: ")
@@ -33,6 +37,7 @@ class App()
 
                     criarNovoQuadro(nome)
                 }
+                // OPCAO ACESSAR QUADRO
                 2 ->
                 {
                     println("Selecione o quadro: \n")
@@ -46,13 +51,21 @@ class App()
                         }
 
                         print("\nDigite o numero do quadro que deseja acessar: ")
-                        var quadroNum = dados.reader.nextInt()
+                        val quadroNum = Helper.reader.nextInt()
 
                         quadroController.run(quadroNum)
                     }
                     else
                         println("\nNenhum quadro foi criado.\n")
 
+                }
+                // OPCAO CRIAR NOVA ETIQUETA
+                3 ->
+                {
+                    print("\nDigite o nome da nova etiqueta: ")
+                    val nomeEtiqueta = readLine()!!
+
+                    dados.listaEtiqueta.add(Etiqueta(nomeEtiqueta))
                 }
                 else -> println("\nPor favor, escolha um opcao valida")
             }

@@ -2,6 +2,7 @@ package aplicacao
 
 import entidades.Dados
 import entidades.Listagem
+import utils.Helper
 
 class ListaController
 {
@@ -14,7 +15,7 @@ class ListaController
 
         while (running)
         {
-            println("\nLista: ${lista.titulo}")
+            println("\nLista: ${lista.titulo} - Pertencente ao Quadro ${lista.quadroPai}")
             println("*** OPCOES DE LISTA ***\n")
 
             println("1. Criar novo cartao")
@@ -23,11 +24,12 @@ class ListaController
 
             print("\nSelecione a opcao: ")
 
-            var opcao = dados.reader.nextInt()
+            var opcao = Helper.reader.nextInt()
 
             when(opcao)
             {
                 0 -> running = false
+                // OPCAO CRIAR NOVO CARTAO
                 1 ->
                 {
                     print("\nDigite o nome do novo cartao: ")
@@ -36,8 +38,9 @@ class ListaController
                     print("\nDigite uma descricao para o novo cartao: ")
                     val desc = readLine()!!
 
-                    lista.criarNovoCartao(nome,desc)
+                    lista.criarNovoCartao(nome, desc, lista.titulo)
                 }
+                // OPCAO ACESSAR CARTAO
                 2 ->
                 {
                     if (lista.listaCartao.size > 0)
@@ -50,7 +53,7 @@ class ListaController
                         }
 
                         print("\nSelecione o cartao: ")
-                        val selec = dados.reader.nextInt()
+                        val selec = Helper.reader.nextInt()
 
                         cartaoController.run(lista.listaCartao[selec])
                     }
