@@ -6,6 +6,7 @@ import entidades.Listagem
 class ListaController
 {
     val dados: Dados = Dados.getInstance()
+    val cartaoController: CartaoController = CartaoController()
 
     fun run(lista: Listagem)
     {
@@ -29,11 +30,32 @@ class ListaController
                 0 -> running = false
                 1 ->
                 {
+                    print("\nDigite o nome do novo cartao: ")
+                    val nome = readLine()!!
 
+                    print("\nDigite uma descricao para o novo cartao: ")
+                    val desc = readLine()!!
+
+                    lista.criarNovoCartao(nome,desc)
                 }
                 2 ->
                 {
+                    if (lista.listaCartao.size > 0)
+                    {
+                        var i = 0
+                        for (cartao in lista.listaCartao)
+                        {
+                            println("$i. ${cartao.titulo} - ${cartao.descricao}")
+                            i++
+                        }
 
+                        print("\nSelecione o cartao: ")
+                        val selec = dados.reader.nextInt()
+
+                        cartaoController.run(lista.listaCartao[selec])
+                    }
+                    else
+                        println("\nNao existem cartoes atrelados a esta lista.\n")
                 }
                 else ->
                         println("\nPor favor, digite uma opcao valida!\n")
