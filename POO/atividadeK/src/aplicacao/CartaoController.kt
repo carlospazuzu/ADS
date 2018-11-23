@@ -3,11 +3,46 @@ package aplicacao
 import entidades.Cartao
 import entidades.Comentario
 import entidades.Dados
+import entidades.Log
 import utils.Helper
 
 class CartaoController
 {
     val dados: Dados = Dados.getInstance()
+
+    fun mostrarComentarios(cartao: Cartao)
+    {
+        if (cartao.listaComentarios.size > 0)
+        {
+            println("Comentarios:")
+            for (cmt in cartao.listaComentarios)
+            {
+                println(cmt.comentario)
+            }
+            println()
+        }
+        else
+            println("\nNao existem comentarios neste cartao.\n")
+    }
+
+    fun mostrarLog(cartao: Cartao)
+    {
+        if (cartao.logs.size > 0)
+        {
+            val tempLogs: ArrayList<Log> = cartao.logs;
+            tempLogs.reverse()
+
+            println("Logs:")
+            for (tmpl in tempLogs)
+            {
+                println(tmpl.log)
+            }
+            println()
+
+        }
+        else
+            println("\nNao existem logs para este cartao.\n")
+    }
 
     fun run(cartao: Cartao)
     {
@@ -21,7 +56,9 @@ class CartaoController
             println("2. Adicionar comentario")
             println("3. Adicionar Etiqueta")
             println("4. Remover Etiqueta")
-            println("0. Sair")
+            println("5. Listar log de cartao")
+            println("6. Listar comentarios")
+            println("0. Sair\n")
 
             print("Selecione a opcao desejada: ")
             var opcao = Helper.reader.nextInt()
@@ -32,12 +69,8 @@ class CartaoController
                 // OPCAO VISUALIZAR CARTAO
                 1 ->
                 {
-                    println("Comentarios:\n")
-                    for (comentario in cartao.listaComentarios)
-                    {
-                        print(comentario.comentario)
-                    }
-                    println()
+                    mostrarComentarios(cartao)
+                    mostrarLog(cartao)
                 }
                 // OPCAO ADICIONAR COMENTARIO
                 2 ->
@@ -46,6 +79,7 @@ class CartaoController
                     val novoComentario = readLine()!!
 
                     cartao.listaComentarios.add(Comentario(novoComentario))
+                    cartao.inserirLog("Adicionou um novo comentario.")
                 }
                 // OPCAO ADICIONAR ETIQUETA
                 3 ->
@@ -67,11 +101,16 @@ class CartaoController
                             println("\nIndice inválido!\n")
                         }
                         else
+                        {
                             cartao.inserirEtiqueta(dados.listaEtiqueta[escolha])
+                            cartao.inserirLog("Adicionou a etiqueta " + dados.listaEtiqueta[escolha].titulo + ".")
+                        }
+
                     }
                     else
                         println("\nNao existe nenhuma etiqueta disponivel!\n")
                 }
+                // OPCAO REMOVER ETIQUETA
                 4 ->
                 {
                     if (cartao.etiquetas.size > 0)
@@ -91,10 +130,24 @@ class CartaoController
                             println("\nIndice invalido!\n")
                         }
                         else
+                        {
+                            cartao.inserirLog("Removeu a etiqueta " + cartao.etiquetas[etqNum] + ".")
                             cartao.removerEtiqueta(etqNum)
+                        }
+
                     }
                     else
                         println("\nNao existem etiquetas anexadas a este cartao!\n")
+                }
+                // OPCAO VER LOGS
+                5 ->
+                {
+                    mostrarLog(cartao)
+                }
+                // OPCAO VER COMENTARIOS
+                6 ->
+                {
+                    mostrarComentarios(cartao)
                 }
             }
         }
