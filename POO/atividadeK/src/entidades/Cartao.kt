@@ -9,6 +9,16 @@ class Cartao(tit: String, desc: String, pai: String)
     var etiquetas: ArrayList<Etiqueta> = ArrayList<Etiqueta>()
     var listaComentarios: ArrayList<Comentario> = ArrayList<Comentario>()
 
+    fun inserirEtiqueta(etiqueta: Etiqueta)
+    {
+        etiquetas.add(etiqueta)
+    }
+
+    fun removerEtiqueta(posicao: Int)
+    {
+        etiquetas.removeAt(posicao)
+    }
+
     fun getStringEtiquetas(): String
     {
         var str = ""

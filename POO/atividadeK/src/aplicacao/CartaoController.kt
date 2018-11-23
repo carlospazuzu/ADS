@@ -17,9 +17,10 @@ class CartaoController
             println("\nCartao: ${cartao.titulo} - Pertencente à lista ${cartao.listaPai}")
             println(cartao.descricao + "\n")
             println("ETIQUETAS: " + cartao.getStringEtiquetas())
-            println("1. Visualizar cartao")
+            println("\n1. Visualizar cartao")
             println("2. Adicionar comentario")
             println("3. Adicionar Etiqueta")
+            println("4. Remover Etiqueta")
             println("0. Sair")
 
             print("Selecione a opcao desejada: ")
@@ -64,11 +65,36 @@ class CartaoController
                         if (escolha < 0 || escolha >= dados.listaEtiqueta.size)
                         {
                             println("\nIndice inválido!\n")
-                            continue
                         }
+                        else
+                            cartao.inserirEtiqueta(dados.listaEtiqueta[escolha])
                     }
                     else
-                        println("\nEste cartao nao possui nenhuma etiqueta!\n")
+                        println("\nNao existe nenhuma etiqueta disponivel!\n")
+                }
+                4 ->
+                {
+                    if (cartao.etiquetas.size > 0)
+                    {
+                        var i = 0
+                        for (etq in cartao.etiquetas)
+                        {
+                            println("$i. ${etq.titulo}")
+                            i ++
+                        }
+                        print("\nSelecione a etiqueta a ser removida: ")
+
+                        val etqNum = Helper.reader.nextInt()
+
+                        if (etqNum < 0 || etqNum >= cartao.etiquetas.size)
+                        {
+                            println("\nIndice invalido!\n")
+                        }
+                        else
+                            cartao.removerEtiqueta(etqNum)
+                    }
+                    else
+                        println("\nNao existem etiquetas anexadas a este cartao!\n")
                 }
             }
         }

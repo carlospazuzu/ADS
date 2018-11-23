@@ -55,7 +55,12 @@ class ListaController
                         print("\nSelecione o cartao: ")
                         val selec = Helper.reader.nextInt()
 
-                        cartaoController.run(lista.listaCartao[selec])
+                        if (selec < 0 || selec >= lista.listaCartao.size)
+                        {
+                            println("\nIndice invalido\n")
+                        }
+                        else
+                            cartaoController.run(lista.listaCartao[selec])
                     }
                     else
                         println("\nNao existem cartoes atrelados a esta lista.\n")

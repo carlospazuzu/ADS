@@ -53,7 +53,12 @@ class App()
                         print("\nDigite o numero do quadro que deseja acessar: ")
                         val quadroNum = Helper.reader.nextInt()
 
-                        quadroController.run(quadroNum)
+                        if (quadroNum < 0 || quadroNum >= this.dados.listaQuadro.size)
+                        {
+                            println("\nIndice inválido!\n")
+                        }
+                        else
+                            quadroController.run(quadroNum)
                     }
                     else
                         println("\nNenhum quadro foi criado.\n")

@@ -53,8 +53,12 @@ class QuadroController
 
                         var opcaoLista = Helper.reader.nextInt()
 
-                        // TODO: fazer o mesmo esquema pra lista
-                        listaController.run(dados.listaQuadro[numeroQuadro].listaListagem[opcaoLista])
+                        if (opcaoLista < 0 || opcaoLista >= this.dados.listaQuadro[numeroQuadro].listaListagem.size)
+                        {
+                            println("\nIndice invalido!\n")
+                        }
+                        else
+                            listaController.run(dados.listaQuadro[numeroQuadro].listaListagem[opcaoLista])
                     }
                     else
                         println("\nNenhuma lista vinculada a este quadro.\n")
